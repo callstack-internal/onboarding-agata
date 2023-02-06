@@ -3,6 +3,7 @@ import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import {MainWeatherInfo} from '../types';
+import {RouteNames} from '../navigation/types';
 import {MainInfo} from './MainInfo';
 
 type Props = {
@@ -11,7 +12,7 @@ type Props = {
 export const ListItem = ({name, conditions, temp, id}: Props) => {
   const navigation = useNavigation();
   const navigateToDetails = () => {
-    navigation.navigate('Details', {id});
+    navigation.navigate(RouteNames.Details, {id});
   };
 
   return (

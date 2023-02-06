@@ -1,8 +1,8 @@
 import React from 'react';
 import {FlatList, StyleSheet, View} from 'react-native';
 
-import {weatherData} from '../data/weatherData';
 import {ListItem} from '../components/ListItem';
+import {weatherData} from '../data/weatherData';
 
 export const MainScreen = () => {
   return (

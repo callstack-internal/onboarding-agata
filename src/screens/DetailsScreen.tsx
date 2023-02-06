@@ -1,19 +1,26 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {MainInfo} from '../components/MainInfo';
 import {weatherData} from '../data/weatherData';
+import {RootStackParamList, RouteNames} from '../navigation/types';
 import {COLORS} from '../styles/colors';
 
-export const DetailsScreen = ({route}) => {
+type DetailsScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  RouteNames.Details
+>;
+
+export const DetailsScreen = ({route}: DetailsScreenProps) => {
   const cityId = route.params?.id;
 
   const screenData = weatherData.find(data => data.id === cityId);
 
   if (!screenData) {
     return (
-      <View>
-        <Text>No data found</Text>
+      <View style={styles.noDataViewWrapper}>
+        <Text>No data found :(</Text>
       </View>
     );
   }
@@ -22,7 +29,7 @@ export const DetailsScreen = ({route}) => {
     screenData;
 
   return (
-    <View>
+    <>
       <MainInfo name={name} conditions={conditions} temp={temp} />
       <View style={styles.infoRow}>
         <Text>Humidity:</Text>
@@ -40,11 +47,16 @@ export const DetailsScreen = ({route}) => {
         <Text>Cloud Cover:</Text>
         <Text style={styles.dataValueText}>{cloudCover}%</Text>
       </View>
-    </View>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
+  noDataViewWrapper: {
+    flex: 1,
+    paddingTop: 120,
+    alignItems: 'center',
+  },
   infoRow: {
     padding: 15,
     borderBottomColor: COLORS.lightGray,

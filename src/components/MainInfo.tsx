@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {MainWeatherInfo} from '../types';
+
 import {COLORS} from '../styles/colors';
+import {MainWeatherInfo} from '../types';
 
 export const MainInfo = ({name, conditions, temp}: MainWeatherInfo) => {
   return (

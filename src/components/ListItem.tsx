@@ -9,6 +9,7 @@ import {MainInfo} from './MainInfo';
 type Props = {
   id: string;
 } & MainWeatherInfo;
+
 export const ListItem = ({name, conditions, temp, id}: Props) => {
   const navigation = useNavigation();
   const navigateToDetails = () => {

@@ -1,11 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import {MainInfo} from '../components/MainInfo';
-import {weatherData} from '../data/weatherData';
+import {InfoRow} from '../components/InfoRow';
 import {RootStackParamList, RouteNames} from '../navigation/types';
-import {COLORS} from '../styles/colors';
+import {ErrorMessage} from '../components/ErrorMessage';
 
 type DetailsScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -13,59 +12,35 @@ type DetailsScreenProps = NativeStackScreenProps<
 >;
 
 export const DetailsScreen = ({route}: DetailsScreenProps) => {
-  const cityId = route.params?.id;
-
-  const screenData = weatherData.find(data => data.id === cityId);
+  const screenData = route.params?.item;
 
   if (!screenData) {
-    return (
-      <View style={styles.noDataViewWrapper}>
-        <Text>No data found :(</Text>
-      </View>
-    );
+    return <ErrorMessage text="No data found :(" />;
   }
 
-  const {name, conditions, temp, humidity, pressure, windSpeed, cloudCover} =
-    screenData;
+  const {
+    name,
+    conditions,
+    temp,
+    humidity,
+    pressure,
+    windSpeed,
+    cloudCover,
+    iconUrl,
+  } = screenData;
 
   return (
     <>
-      <MainInfo name={name} conditions={conditions} temp={temp} />
-      <View style={styles.infoRow}>
-        <Text>Humidity:</Text>
-        <Text style={styles.dataValueText}>{humidity}%</Text>
-      </View>
-      <View style={styles.infoRow}>
-        <Text>Pressure:</Text>
-        <Text style={styles.dataValueText}>{pressure} hPa</Text>
-      </View>
-      <View style={styles.infoRow}>
-        <Text>Wind Speed:</Text>
-        <Text style={styles.dataValueText}>{windSpeed} km/h</Text>
-      </View>
-      <View style={styles.infoRow}>
-        <Text>Cloud Cover:</Text>
-        <Text style={styles.dataValueText}>{cloudCover}%</Text>
-      </View>
+      <MainInfo
+        name={name}
+        conditions={conditions}
+        temp={temp}
+        iconUrl={iconUrl}
+      />
+      <InfoRow title="humidity" value={`${humidity}%`} />
+      <InfoRow title="pressure" value={`${pressure} hPa`} />
+      <InfoRow title="wind speed" value={`${windSpeed} km/h`} />
+      <InfoRow title="cloud cover" value={`${cloudCover}%`} />
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  noDataViewWrapper: {
-    flex: 1,
-    paddingTop: 120,
-    alignItems: 'center',
-  },
-  infoRow: {
-    padding: 15,
-    borderBottomColor: COLORS.lightGray,
-    borderBottomWidth: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
-  dataValueText: {
-    color: COLORS.gray,
-    fontWeight: 'bold',
-  },
-});

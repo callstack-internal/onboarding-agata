@@ -1,3 +1,5 @@
+import {FullWeatherInfo} from '../types';
+
 export enum RouteNames {
   Main = 'Main',
   Details = 'Details',
@@ -5,9 +7,7 @@ export enum RouteNames {
 
 export type RootStackParamList = {
   [RouteNames.Main]: undefined;
-  [RouteNames.Details]: {
-    id: string;
-  };
+  [RouteNames.Details]: {item: FullWeatherInfo};
 };
 
 declare global {

@@ -1,13 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 
 import {COLORS} from '../styles/colors';
 import {MainWeatherInfo} from '../types';
 
-export const MainInfo = ({name, conditions, temp}: MainWeatherInfo) => {
+export const MainInfo = ({
+  name,
+  conditions,
+  temp,
+  iconUrl,
+}: MainWeatherInfo) => {
   return (
     <View style={styles.wrapper}>
-      <View style={styles.icon} />
+      <Image
+        source={{uri: iconUrl}}
+        style={styles.icon}
+        accessibilityIgnoresInvertColors
+      />
       <View style={styles.textWrapper}>
         <Text style={styles.cityText}>{name}</Text>
         <Text style={styles.conditionsText}>{conditions}</Text>
@@ -28,13 +37,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   icon: {
-    width: 25,
-    height: 25,
+    width: 50,
+    height: 50,
     marginRight: 20,
-    borderRadius: 12.5,
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderColor: COLORS.gray,
   },
   textWrapper: {
     flex: 2,
@@ -51,7 +56,7 @@ const styles = StyleSheet.create({
   tempWrapper: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '20%',
+    width: 95,
     borderRadius: 20,
     padding: 10,
     backgroundColor: COLORS.lightTeal,

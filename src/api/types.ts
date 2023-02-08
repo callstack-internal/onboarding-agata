@@ -3,14 +3,12 @@ export type CityWeatherData = {
     lon: number;
     lat: number;
   };
-  weather: [
-    {
-      id: number;
-      main: string;
-      description: string;
-      icon: string;
-    },
-  ];
+  weather: {
+    id: number;
+    main: string;
+    description: string;
+    icon: string;
+  }[];
   name: string;
   main: {
     temp: number;
@@ -19,25 +17,17 @@ export type CityWeatherData = {
     temp_max: number;
     pressure: number;
     humidity: number;
-    sea_level: number;
-    grnd_level: number;
   };
   visibility: number;
   wind: {
     speed: number;
     deg: number;
-    gust: number;
-  };
-  rain: {
-    '1h': number;
   };
   clouds: {
     all: number;
   };
   dt: number;
   sys: {
-    type: number;
-    id: number;
     country: string;
     sunrise: number;
     sunset: number;

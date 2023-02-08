@@ -12,7 +12,10 @@ export const MainScreen = () => {
   const {data, error, loading} = useWeatherData();
 
   const onButtonPress = () => {
-    NotificationModuleInterface.showAppNotification('Hello!', 'Siema ByczQ!');
+    NotificationModuleInterface.showAppNotification(
+      `Weather in ${data[0].name}`,
+      data[0].conditions,
+    );
   };
 
   if (loading) {

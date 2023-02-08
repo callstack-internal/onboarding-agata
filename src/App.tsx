@@ -7,7 +7,7 @@ import NotificationModuleInterface from './modules/notifications';
 
 const App = () => {
   useEffect(() => {
-    NotificationModuleInterface.showAppNotification('hello', 'lol');
+    NotificationModuleInterface.showAppNotification('hello', 'siema ByczQ');
   }, []);
 
   return (

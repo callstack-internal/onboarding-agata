@@ -4,7 +4,7 @@
 
 @implementation MyNotification
 
-RCT_EXPORT_MODULE()
+RCT_EXPORT_MODULE();
 
 RCT_EXPORT_METHOD(showNotification:(NSString *)title location:(NSString *)body)
 {
@@ -31,3 +31,4 @@ RCT_EXPORT_METHOD(showNotification:(NSString *)title location:(NSString *)body)
 }
 
 @end
+

@@ -1,6 +1,5 @@
-#import "AppDelegate.h"
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-
+#import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
 #import <UserNotifications/UserNotifications.h>

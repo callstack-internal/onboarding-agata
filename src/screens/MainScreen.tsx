@@ -1,11 +1,12 @@
 import React from 'react';
-import {Button, FlatList, StyleSheet, View} from 'react-native';
+import {FlatList, StyleSheet, View} from 'react-native';
 
 import {ListItem} from '../components/ListItem';
 import {useWeatherData} from '../hooks/useWeatherData';
 import {Loader} from '../components/Loader';
 import {ErrorMessage} from '../components/ErrorMessage';
 import NotificationModuleInterface from '../modules/notifications';
+import {NotificationButton} from '../components/NotificationButton';
 
 export const MainScreen = () => {
   const {data, error, loading} = useWeatherData();
@@ -24,7 +25,7 @@ export const MainScreen = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Button title="Click me!" onPress={onButtonPress} />
+      <NotificationButton onPress={onButtonPress} />
       <FlatList
         data={data}
         renderItem={({item}) => {

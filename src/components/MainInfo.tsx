@@ -2,26 +2,28 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 
 import {COLORS} from '../styles/colors';
-import {MainWeatherInfo} from '../types';
+import {MainWeatherInfo, TestId} from '../types';
 
-export const MainInfo = ({
-  name,
-  conditions,
-  temp,
-  iconUrl,
-}: MainWeatherInfo) => {
+type Props = TestId & MainWeatherInfo;
+
+export const MainInfo = ({name, conditions, temp, iconUrl, testID}: Props) => {
   return (
     <View style={styles.wrapper}>
       <Image
         source={{uri: iconUrl}}
         style={styles.icon}
         accessibilityIgnoresInvertColors
+        testID={`${testID}-icon`}
       />
       <View style={styles.textWrapper}>
-        <Text style={styles.cityText}>{name}</Text>
-        <Text style={styles.conditionsText}>{conditions}</Text>
+        <Text style={styles.cityText} testID={`${testID}-name`}>
+          {name}
+        </Text>
+        <Text style={styles.conditionsText} testID={`${testID}-conditions`}>
+          {conditions}
+        </Text>
       </View>
-      <View style={styles.tempWrapper}>
+      <View style={styles.tempWrapper} testID={`${testID}-temperature`}>
         <Text style={styles.tempText}>{temp} &deg;C</Text>
       </View>
     </View>

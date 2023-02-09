@@ -31,8 +31,9 @@ export const MainScreen = () => {
     <View style={styles.wrapper}>
       <FlatList
         data={data}
-        renderItem={({item}) => {
-          return <ListItem {...item} />;
+        testID="list"
+        renderItem={({item, index}) => {
+          return <ListItem {...item} testID={`listItem-${index}`} />;
         }}
       />
       <NotificationButton onPress={onButtonPress} />

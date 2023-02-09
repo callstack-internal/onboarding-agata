@@ -11,3 +11,7 @@ export type FullWeatherInfo = MainWeatherInfo & {
   windSpeed: number;
   cloudCover: number;
 };
+
+export type TestId = {
+  testID: string;
+};

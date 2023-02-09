@@ -36,6 +36,7 @@ export const DetailsScreen = ({route}: DetailsScreenProps) => {
         conditions={conditions}
         temp={temp}
         iconUrl={iconUrl}
+        testID="details"
       />
       <InfoRow title="humidity" value={`${humidity}%`} />
       <InfoRow title="pressure" value={`${pressure} hPa`} />

@@ -5,9 +5,19 @@ import {ListItem} from '../components/ListItem';
 import {useWeatherData} from '../hooks/useWeatherData';
 import {Loader} from '../components/Loader';
 import {ErrorMessage} from '../components/ErrorMessage';
+import NotificationModuleInterface from '../modules/notifications';
+import {NotificationButton} from '../components/NotificationButton';
 
 export const MainScreen = () => {
   const {data, error, loading} = useWeatherData();
+
+  const onButtonPress = () => {
+    const randomCityIndex = Math.floor(Math.random() * data.length);
+    NotificationModuleInterface.showAppNotification(
+      `Weather in ${data[randomCityIndex].name}`,
+      data[randomCityIndex].conditions,
+    );
+  };
 
   if (loading) {
     return <Loader />;
@@ -25,6 +35,7 @@ export const MainScreen = () => {
           return <ListItem {...item} />;
         }}
       />
+      <NotificationButton onPress={onButtonPress} />
     </View>
   );
 };

@@ -12,9 +12,10 @@ export const MainScreen = () => {
   const {data, error, loading} = useWeatherData();
 
   const onButtonPress = () => {
+    const randomCityIndex = Math.floor(Math.random() * data.length);
     NotificationModuleInterface.showAppNotification(
-      `Weather in ${data[0].name}`,
-      data[0].conditions,
+      `Weather in ${data[randomCityIndex].name}`,
+      data[randomCityIndex].conditions,
     );
   };
 
@@ -28,13 +29,13 @@ export const MainScreen = () => {
 
   return (
     <View style={styles.wrapper}>
-      <NotificationButton onPress={onButtonPress} />
       <FlatList
         data={data}
         renderItem={({item}) => {
           return <ListItem {...item} />;
         }}
       />
+      <NotificationButton onPress={onButtonPress} />
     </View>
   );
 };
